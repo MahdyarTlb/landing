@@ -401,14 +401,47 @@ body {
 }
 
 /* ریسپانسیو */
+/* محدود کردن اندازه برای دسکتاپ */
 @media (max-width: 768px) {
-    .container { padding: 15px; }
+    .container {
+        max-width: 500px; /* یا 600px */
+        margin: 0 auto;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    body {
+        background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    }
     .timer { font-size: 2.2rem; padding: 12px 20px; }
     .timer-digit { font-size: 2rem; min-width: 50px; }
     .message h1 { font-size: 2.2rem; }
     .message p { font-size: 1.2rem; }
     .logo { width: 140px; height: 140px; }
     .form-container { max-width: 350px; }
+}
+
+/* برای صفحات بزرگ */
+@media (min-width: 1200px) {
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .timer {
+        font-size: 2.8rem;
+    }
+    
+    .message h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* برای صفحات خیلی بزرگ */
+@media (min-width: 1500px) {
+    .container {
+        max-width: 600px;
+    }
 }
 
 @media (max-width: 480px) {
