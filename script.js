@@ -70,38 +70,31 @@ function setupFormStorage() {
     
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const name = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        
-        // if (!name || !email) {
-        //     alert('❌ لطفا همه فیلدها رو پر کن!');
-        //     return;
-        // }
-        
-        // ذخیره در localStorage
+
+        const formData = new FormData(this);
+        const name = formData.get('name');   // <-- اسم فیلدی که تو HTML هست
+        const email = formData.get('email'); // <-- همینطور
+
+        if (!name || !email) {
+            alert('❌ لطفا همه فیلدها رو پر کن!');
+            return;
+        }
+
+        // ذخیره در localStorage و پیام موفقیت
         const submissions = JSON.parse(localStorage.getItem('landingSubmissions') || '[]');
-        const newSubmission = {
-            name: name,
-            email: email,
+        submissions.push({
+            name,
+            email,
             timestamp: new Date().toISOString(),
             id: Date.now()
-        };
-        
-        submissions.push(newSubmission);
+        });
         localStorage.setItem('landingSubmissions', JSON.stringify(submissions));
-        
-        // نمایش پیام
-        alert(`✅ ثبت شد !\nاسم: ${name}\nایمیل: ${email}\n\nاگه یادمون نرفت، خبرت میکنیم:)) 🤝`);
-        
-        // ریست فرم
+
+        alert(`✅ ثبت شد !\nاسم: ${name}\nایمیل: ${email}`);
+
         this.reset();
-        
-        // لاگ در کنسول
-        console.log('📝 ثبت جدید:', newSubmission);
-        console.log('💾 تعداد کل ثبت‌ها:', submissions.length);
-        console.log('📊 همه ثبت‌ها:', submissions);
-    });
+        });
+
     
     console.log('✅ سیستم ذخیره‌سازی فعال شد!');
 }
