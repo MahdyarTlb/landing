@@ -53,8 +53,7 @@
         <form
           class="email-form"
           id="signupForm"
-          action="https://script.google.com/macros/s/AKfycbx-Uwvz1y2JePvqUdWJ-I0XYm1ktlBqPlFrf7MIEPb0QlZIvU0Eszwn4D5yZanjqpEA/exec"
-          target="hidden_iframe"
+          action="https://script.google.com/macros/s/AKfycbyNNvhMGgYq__F1AaYhcuPp327rxGXf8dgPJ5J5ji00pIOPq0CK3BtboSCTsbZkMg4Q/exec"
         >
           <div class="input-group">
             <input
@@ -455,52 +454,6 @@
     </script>
 
     <script src="script.js"></script>
-
-<script>
-function setupFormStorage() {
-    const form = document.querySelector('.email-form');
-    if (!form) return console.log('❌ فرم پیدا نشد!');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const name = this.querySelector('input[type="text"]').value.trim();
-        const email = this.querySelector('input[type="email"]').value.trim();
-
-        if (!name || !email) {
-            alert('❌ لطفا همه فیلدها رو پر کن!');
-            return;
-        }
-
-        // ذخیره در localStorage
-        const submissions = JSON.parse(localStorage.getItem('landingSubmissions') || '[]');
-        const newSubmission = {
-            name, email, timestamp: new Date().toISOString(), id: Date.now()
-        };
-        submissions.push(newSubmission);
-        localStorage.setItem('landingSubmissions', JSON.stringify(submissions));
-
-        // ارسال فرم به Google Sheets با hidden iframe (CORS free)
-        const iframe = document.querySelector('iframe[name="hidden_iframe"]');
-        const tempForm = form.cloneNode(true);
-        tempForm.style.display = 'none';
-        tempForm.target = 'hidden_iframe';
-        document.body.appendChild(tempForm);
-        tempForm.submit();
-        setTimeout(() => tempForm.remove(), 1000);
-
-        // پیام موفقیت
-        alert(`✅ ثبت شد!\nاسم: ${name}\nایمیل: ${email}\nخبرت میکنیم:)) 🤝`);
-
-        this.reset();
-        console.log('📝 ثبت جدید:', newSubmission);
-    });
-
-    console.log('✅ سیستم ذخیره‌سازی فعال شد!');
-}
-
-document.addEventListener('DOMContentLoaded', setupFormStorage);
-</script>
 
   </body>
 </html>

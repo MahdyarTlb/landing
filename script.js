@@ -54,49 +54,24 @@ function updateTimer() {
 const timerInterval = setInterval(updateTimer, 1000);
 updateTimer();
 
-// سیستم ذخیره‌سازی با localStorage
 function setupFormStorage() {
     const form = document.querySelector('.email-form');
-    
-    if (!form) {
-        console.log('❌ فرم پیدا نشد!');
-        return;
-    }
-    
-    // حذف action و method از فرم
-    form.removeAttribute('action');
-    form.removeAttribute('method');
-    form.removeAttribute('target');
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    if (!form) return console.log('❌ فرم پیدا نشد!');
 
-        const formData = new FormData(this);
-        const name = formData.get('name');   // <-- اسم فیلدی که تو HTML هست
-        const email = formData.get('email'); // <-- همینطور
+    form.addEventListener('submit', function(e) {
+        const name = form.querySelector('input[name="name"]').value.trim();
+        const email = form.querySelector('input[name="email"]').value.trim();
 
         if (!name || !email) {
             alert('❌ لطفا همه فیلدها رو پر کن!');
+            e.preventDefault(); // جلوگیری از ارسال ناقص
             return;
         }
 
-        // ذخیره در localStorage و پیام موفقیت
-        const submissions = JSON.parse(localStorage.getItem('landingSubmissions') || '[]');
-        submissions.push({
-            name,
-            email,
-            timestamp: new Date().toISOString(),
-            id: Date.now()
-        });
-        localStorage.setItem('landingSubmissions', JSON.stringify(submissions));
+        alert(`✅ ثبت شد!\nاسم: ${name}\nایمیل: ${email}`);
+    });
 
-        alert(`✅ ثبت شد !\nاسم: ${name}\nایمیل: ${email}`);
-
-        this.reset();
-        });
-
-    
-    console.log('✅ سیستم ذخیره‌سازی فعال شد!');
+    console.log('✅ فرم آماده ارسال به شیت!');
 }
 
 // انیمیشن لوگو
