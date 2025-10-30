@@ -50,7 +50,11 @@
       <!-- فرم ثبت نام -->
       <div class="form-container">
         <!-- جایگزین ساده‌تر -->
-        <form class="email-form" id="signupForm">
+        <form
+          class="email-form"
+          id="signupForm"
+          action="https://script.google.com/macros/s/AKfycbx-Uwvz1y2JePvqUdWJ-I0XYm1ktlBqPlFrf7MIEPb0QlZIvU0Eszwn4D5yZanjqpEA/exec"
+        >
           <div class="input-group">
             <input
               type="text"
@@ -451,7 +455,7 @@
 
     <script src="script.js"></script>
 
-    <script>
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("signupForm");
         if (!form) {
@@ -482,7 +486,7 @@
           // ارسال به Google Sheets
           try {
             const response = await fetch(
-              "https://cors.eu.org/https://script.google.com/macros/s/AKfycbx-Uwvz1y2JePvqUdWJ-I0XYm1ktlBqPlFrf7MIEPb0QlZIvU0Eszwn4D5yZanjqpEA/exec",
+              "https://script.google.com/macros/s/AKfycbx-Uwvz1y2JePvqUdWJ-I0XYm1ktlBqPlFrf7MIEPb0QlZIvU0Eszwn4D5yZanjqpEA/exec",
               {
                 method: "POST",
                 body: formData,
@@ -499,6 +503,6 @@
           form.reset();
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>
