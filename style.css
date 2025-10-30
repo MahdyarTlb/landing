@@ -6,12 +6,17 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+    transform: scale(1) !important;
+
 }
 
 html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    touch-action: manipulation;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    touch-action: manipulation !important;
+    transform: scale(1) !important;
+    transform-origin: 0 0 !important;
+    zoom: 1 !important;
 }
 
 html, body {
@@ -27,8 +32,13 @@ body {
     min-height: 100vh;
     overflow: hidden;
     position: relative;
-    zoom: 1;
     transform-origin: 0 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    zoom: 1 !important;
+    -moz-transform: scale(1) !important;
+    -webkit-transform: scale(1) !important;
+    transform: scale(1) !important;
 }
 
 .container {
@@ -44,7 +54,9 @@ body {
     text-align: center;
     overflow: hidden;
     width: 100vw; /* اضافه کن */
-    box-sizing: border-box;
+    box-sizing: border-box;    
+    transform: scale(1) !important;
+    zoom: 1 !important;
 }
 
 /* استایل لوگو */
