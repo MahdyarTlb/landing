@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>یه خبر بمب تو راهه! 💣</title>
+    <link rel="icon" type="image/x-icon" href="main-tr.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- لوگو -->
+      <div class="logo-container">
+        <div class="logo-glow"></div>
+        <img src="main-tr.png" alt="Logo" class="logo" id="logo" />
+      </div>
+
+      <!-- تایمر بزرگ با لیبل -->
+      <div class="timer-container">
+        <div class="timer" id="timer">
+          <div class="timer-unit">
+            <span class="timer-digit">۰۹</span>
+            <span class="timer-label">روز</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-digit">۰۰</span>
+            <span class="timer-label">ساعت</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-digit">۰۰</span>
+            <span class="timer-label">دقیقه</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-digit">۰۰</span>
+            <span class="timer-label">ثانیه</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- متن اصلی -->
+      <div class="message">
+        <h1>یه خبر بمبببب تو راهه! 💥</h1>
+        <p>نمیخای که دستی دستی از دستش بدی!؟</p>
+      </div>
+
+      <!-- فرم ثبت نام -->
+      <div class="form-container">
+        <!-- جایگزین ساده‌تر -->
+        <form class="email-form">
+          <input type="hidden" name="_subject" value="ثبت نام جدید!" />
+          <input type="hidden" name="_template" value="table" />
+
+          <div class="input-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="اسمت رو بنویس"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="ایمیلت رو وارد کن"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>می‌خوام خبردار بشم! 🚀</span>
+          </button>
+        </form>
+        <iframe name="hidden_iframe" style="display: none"></iframe>
+      </div>
+    </div>
+
+    <!-- المان های انیمیشن بکگراند -->
+    <div class="bg-animation">
+      <!-- ذرات -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+
+      <!-- امواج انرژی -->
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+
+      <!-- خطوط انرژی -->
+      <div class="energy-line"></div>
+      <div class="energy-line"></div>
+      <div class="energy-line"></div>
+      <div class="energy-line"></div>
+
+      <!-- نقاط درخشان -->
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+
+      <!-- لوگوهای شناور -->
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.15; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.15; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.15; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.15; filter: blur(1px)"
+        />
+      </div>
+    </div>
+
+    <!-- پنل مدیریت مخفی - با فشار دادن Ctrl+Shift+M باز میشه -->
+    <div
+      id="adminPanel"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 10000;
+        color: white;
+        border: 2px solid #ff0080;
+      "
+    >
+      <h3>📊 پنل مدیریت ثبت‌نامه‌ها</h3>
+      <div id="adminContent"></div>
+      <button
+        onclick="exportSubmissions()"
+        style="
+          background: #ff0080;
+          color: white;
+          border: none;
+          padding: 10px;
+          border-radius: 5px;
+          margin: 5px;
+        "
+      >
+        📥 خروجی CSV
+      </button>
+      <button
+        onclick="clearSubmissions()"
+        style="
+          background: #ff4444;
+          color: white;
+          border: none;
+          padding: 10px;
+          border-radius: 5px;
+          margin: 5px;
+        "
+      >
+        🗑️ پاک کردن همه
+      </button>
+      <button
+        onclick="document.getElementById('adminPanel').style.display = 'none'"
+        style="
+          background: #666;
+          color: white;
+          border: none;
+          padding: 10px;
+          border-radius: 5px;
+          margin: 5px;
+        "
+      >
+        ❌ بستن
+      </button>
+    </div>
+
+    <!-- پنل مدیریت مخفی - با فشار دادن Ctrl+Shift+M باز میشه -->
+    <div
+      id="adminPanel"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.95);
+        padding: 25px;
+        border-radius: 15px;
+        z-index: 10000;
+        color: white;
+        border: 2px solid #ff0080;
+        backdrop-filter: blur(10px);
+        min-width: 500px;
+        max-width: 90vw;
+      "
+    >
+      <h3 style="color: #ff0080; margin-bottom: 20px; text-align: center">
+        📊 پنل مدیریت ثبت‌نامه‌ها
+      </h3>
+      <div
+        id="adminContent"
+        style="
+          max-height: 400px;
+          overflow-y: auto;
+          margin-bottom: 20px;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 15px;
+          border-radius: 10px;
+        "
+      ></div>
+      <div
+        style="
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          flex-wrap: wrap;
+        "
+      >
+        <button
+          onclick="exportSubmissions()"
+          style="
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+          "
+        >
+          📥 خروجی CSV
+        </button>
+        <button
+          onclick="showAndCopySubmissions()"
+          style="
+            background: linear-gradient(45deg, #2196f3, #21cbf3);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+          "
+        >
+          📋 کپی داده‌ها
+        </button>
+        <button
+          onclick="clearSubmissions()"
+          style="
+            background: linear-gradient(45deg, #ff4444, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+          "
+        >
+          🗑️ پاک کردن همه
+        </button>
+        <button
+          onclick="document.getElementById('adminPanel').style.display = 'none'"
+          style="
+            background: #666;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+          "
+        >
+          ❌ بستن
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // مدیریت پنل ادمین
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && e.shiftKey && e.key === "M") {
+          const panel = document.getElementById("adminPanel");
+          panel.style.display =
+            panel.style.display === "none" ? "block" : "none";
+          updateAdminPanel();
+        }
+      });
+
+      function updateAdminPanel() {
+        const submissions = JSON.parse(
+          localStorage.getItem("landingSubmissions") || "[]"
+        );
+        const content = document.getElementById("adminContent");
+
+        if (submissions.length === 0) {
+          content.innerHTML =
+            '<p style="text-align: center; color: #ff6b6b;">❌ هیچ ثبت‌نامه‌ای وجود ندارد</p>';
+          return;
+        }
+
+        let html = `<p style="text-align: center; color: #4CAF50; margin-bottom: 15px;">✅ تعداد ثبت‌نامه‌ها: <strong>${submissions.length}</strong></p>`;
+        html += '<div style="direction: rtl;">';
+
+        submissions.forEach((sub, index) => {
+          const date = new Date(sub.timestamp).toLocaleString("fa-IR");
+          html += `
+                <div style="background: rgba(255,255,255,0.05); padding: 10px; margin: 8px 0; border-radius: 8px; border-right: 3px solid #ff0080;">
+                    <div><strong>${index + 1}. 👤 ${sub.name}</strong></div>
+                    <div>📧 ${sub.email}</div>
+                    <div style="font-size: 0.8em; color: #ccc;">🕒 ${date}</div>
+                </div>
+            `;
+        });
+
+        html += "</div>";
+        content.innerHTML = html;
+      }
+
+      function clearSubmissions() {
+        if (
+          confirm(
+            "⚠️ آیا مطمئنی می‌خوای همه ثبت‌نامه‌ها رو پاک کنی؟ این عمل غیرقابل بازگشت است!"
+          )
+        ) {
+          localStorage.removeItem("landingSubmissions");
+          updateAdminPanel();
+          alert("✅ همه ثبت‌نامه‌ها پاک شدند");
+        }
+      }
+
+      // تابع exportSubmissions که بالا تعریف کردیم رو اینجا هم بیار
+      function exportSubmissions() {
+        const submissions = JSON.parse(
+          localStorage.getItem("landingSubmissions") || "[]"
+        );
+
+        if (submissions.length === 0) {
+          alert("❌ هیچ داده‌ای برای export وجود ندارد!");
+          return;
+        }
+
+        let csv = "\uFEFF";
+        csv += "نام,ایمیل,تاریخ ثبت\n";
+
+        submissions.forEach((sub) => {
+          const date = new Date(sub.timestamp).toLocaleString("fa-IR");
+          csv += `"${sub.name}","${sub.email}","${date}"\n`;
+        });
+
+        const blob = new Blob([csv], { type: "text/csv; charset=utf-8" });
+        const link = document.createElement("a");
+
+        if (window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob, "ثبت_نامه‌ها.csv");
+        } else {
+          const url = URL.createObjectURL(blob);
+          link.setAttribute("href", url);
+          link.setAttribute("download", "landing-submissions.csv");
+          link.style.visibility = "hidden";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        }
+
+        console.log("✅ فایل CSV آماده دانلود!");
+        alert("✅ فایل CSV آماده دانلود شد!");
+      }
+
+      // تابع جدید برای نمایش و کپی
+      function showAndCopySubmissions() {
+        const submissions = JSON.parse(
+          localStorage.getItem("landingSubmissions") || "[]"
+        );
+
+        if (submissions.length === 0) {
+          alert("❌ هیچ ثبت‌نامه‌ای وجود ندارد!");
+          return;
+        }
+
+        let text = `📊 لیست ثبت‌نامه‌ها (تعداد: ${submissions.length})\n\n`;
+
+        submissions.forEach((sub, index) => {
+          const date = new Date(sub.timestamp).toLocaleString("fa-IR");
+          text += `${index + 1}. 👤 ${sub.name}\n   📧 ${
+            sub.email
+          }\n   🕒 ${date}\n   ──────────────────────\n`;
+        });
+
+        console.log(text);
+
+        // کپی به کلیپ‌بورد
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              alert(
+                "✅ داده‌ها در کلیپ‌بورد کپی شدند! \nهمچنین در کنسول قابل مشاهده هستند (F12)"
+              );
+            })
+            .catch((err) => {
+              alert("⚠️ داده‌ها در کنسول نمایش داده شدند (F12)");
+            });
+        } else {
+          // روش fallback برای مرورگرهای قدیمی
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textArea);
+          alert("✅ داده‌ها کپی شدند! همچنین در کنسول قابل مشاهده هستند (F12)");
+        }
+      }
+    </script>
+
+    <script src="script.js"></script>
+
+    <!-- سایر اسکریپت‌ها -->
+    <script>
+      document
+        .querySelector(".email-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const form = e.target;
+          const name = form.name.value.trim();
+          const email = form.email.value.trim();
+
+          if (!email || !name) {
+            alert("⚠️ لطفاً نام و ایمیل را وارد کن!");
+            return;
+          }
+
+          try {
+            const response = await fetch(
+              "https://emails-save.talebimahdyar8.workers.dev/",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email }),
+              }
+            );
+
+            if (response.ok) {
+              alert("✅ ثبت‌نام با موفقیت انجام شد!");
+              form.reset();
+            } else {
+              alert("❌ مشکلی پیش آمد. لطفاً دوباره تلاش کن.");
+              console.error(await response.text());
+            }
+          } catch (err) {
+            alert("🚨 خطا در اتصال! لطفاً اینترنت را بررسی کن.");
+            console.error(err);
+          }
+        });
+    </script>
+  </body>
+</html>
