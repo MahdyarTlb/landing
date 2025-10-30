@@ -50,10 +50,7 @@
       <!-- فرم ثبت نام -->
       <div class="form-container">
         <!-- جایگزین ساده‌تر -->
-        <form class="email-form">
-          <input type="hidden" name="_subject" value="ثبت نام جدید!" />
-          <input type="hidden" name="_template" value="table" />
-
+        <form class="email-form" id="signupForm">
           <div class="input-group">
             <input
               type="text"
@@ -454,44 +451,47 @@
 
     <script src="script.js"></script>
 
-    <!-- سایر اسکریپت‌ها -->
     <script>
-      document
-        .querySelector(".email-form")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('signupForm');
+    if (!form) {
+        console.error('❌ فرم پیدا نشد!');
+        return;
+    }
 
-          const form = e.target;
-          const name = form.name.value.trim();
-          const email = form.email.value.trim();
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-          if (!email || !name) {
-            alert("⚠️ لطفاً نام و ایمیل را وارد کن!");
-            return;
-          }
+        const formData = new FormData(form); // ← این خیلی مهمه
 
-          try {
-            const response = await fetch(
-              "https://emails-save.talebimahdyar8.workers.dev/",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email }),
-              }
-            );
-
-            if (response.ok) {
-              alert("✅ ثبت‌نام با موفقیت انجام شد!");
-              form.reset();
-            } else {
-              alert("❌ مشکلی پیش آمد. لطفاً دوباره تلاش کن.");
-              console.error(await response.text());
-            }
-          } catch (err) {
-            alert("🚨 خطا در اتصال! لطفاً اینترنت را بررسی کن.");
-            console.error(err);
-          }
+        // ذخیره در localStorage
+        const submissions = JSON.parse(localStorage.getItem('landingSubmissions') || '[]');
+        submissions.push({
+            name: formData.get('name'),
+            email: formData.get('email'),
+            timestamp: new Date().toISOString(),
+            id: Date.now()
         });
+        localStorage.setItem('landingSubmissions', JSON.stringify(submissions));
+
+        // ارسال به Google Sheets
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzYOUKaw-qPTxflrHrfVuRw9EQ-X79q1hO2TT3WFLPhpxAj7Cydxj7Plom4n6oXkVaL/exec', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) alert('✅ ثبت‌نامت با موفقیت انجام شد!');
+            else alert('⚠️ مشکلی در ارسال پیش اومد. دوباره امتحان کن!');
+        } catch (err) {
+            console.error(err);
+            alert('❌ خطای اتصال! لطفاً اینترنتت رو بررسی کن.');
+        }
+
+        form.reset();
+    });
+});
+
     </script>
   </body>
 </html>
