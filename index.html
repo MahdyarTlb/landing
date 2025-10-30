@@ -52,6 +52,7 @@
         <!-- جایگزین ساده‌تر -->
         <form
           class="email-form"
+          method="post"
           id="signupForm"
           action="https://script.google.com/macros/s/AKfycbwjfWUwJ5-ifjE7slsN-NZVrXuhxmMIDUu2qkoegsGNFUgrhvdoifJMLmdxukCRiGQr/exec"
         >
@@ -454,5 +455,90 @@
     </script>
 
     <script src="script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".email-form");
+        if (!form) return console.log("❌ فرم پیدا نشد!");
+
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const name = this.querySelector('input[name="name"]').value.trim();
+          const email = this.querySelector('input[name="email"]').value.trim();
+
+          if (!name || !email) {
+            showMessage("❌ لطفا همه فیلدها رو پر کن!", "error");
+            return;
+          }
+
+          try {
+            const res = await fetch(this.action, {
+              method: "POST",
+              body: new FormData(this),
+            });
+
+            const data = await res.json();
+            if (data.ok) {
+              showMessage(
+                "✅ مرسی از ثبت‌نامت! به‌زودی خبرت می‌کنیم 💌",
+                "success"
+              );
+              this.reset();
+            } else {
+              showMessage(
+                "⚠️ یه مشکلی پیش اومد! لطفا دوباره تلاش کن.",
+                "error"
+              );
+            }
+          } catch (err) {
+            console.error(err);
+            showMessage("🚫 خطای ارتباط با سرور!", "error");
+          }
+        });
+
+        function showMessage(text, type = "success") {
+          const oldMsg = document.querySelector(".form-message");
+          if (oldMsg) oldMsg.remove();
+
+          const msg = document.createElement("div");
+          msg.className = `form-message ${type}`;
+          msg.textContent = text;
+          document.body.appendChild(msg);
+
+          setTimeout(() => msg.classList.add("show"), 100);
+          setTimeout(() => msg.classList.remove("show"), 4000);
+          setTimeout(() => msg.remove(), 4500);
+        }
+      });
+    </script>
+
+    <style>
+      .form-message {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #e0ffe4;
+        color: #1a751d;
+        border: 2px solid #1a751d;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-size: 15px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+        z-index: 9999;
+      }
+      .form-message.error {
+        background: #ffe0e0;
+        border-color: #b71c1c;
+        color: #b71c1c;
+      }
+      .form-message.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
   </body>
 </html>
