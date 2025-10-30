@@ -74,10 +74,10 @@ function setupFormStorage() {
         const name = this.querySelector('input[type="text"]').value;
         const email = this.querySelector('input[type="email"]').value;
         
-        if (!name || !email) {
-            alert('❌ لطفا همه فیلدها رو پر کن!');
-            return;
-        }
+        // if (!name || !email) {
+        //     alert('❌ لطفا همه فیلدها رو پر کن!');
+        //     return;
+        // }
         
         // ذخیره در localStorage
         const submissions = JSON.parse(localStorage.getItem('landingSubmissions') || '[]');
