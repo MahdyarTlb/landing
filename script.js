@@ -54,25 +54,25 @@ function updateTimer() {
 const timerInterval = setInterval(updateTimer, 1000);
 updateTimer();
 
-function setupFormStorage() {
-    const form = document.querySelector('.email-form');
-    if (!form) return console.log('❌ فرم پیدا نشد!');
+// function setupFormStorage() {
+//     const form = document.querySelector('.email-form');
+//     if (!form) return console.log('❌ فرم پیدا نشد!');
 
-    form.addEventListener('submit', function(e) {
-        const name = form.querySelector('input[name="name"]').value.trim();
-        const email = form.querySelector('input[name="email"]').value.trim();
+//     form.addEventListener('submit', function(e) {
+//         const name = form.querySelector('input[name="name"]').value.trim();
+//         const email = form.querySelector('input[name="email"]').value.trim();
 
-        if (!name || !email) {
-            alert('❌ لطفا همه فیلدها رو پر کن!');
-            e.preventDefault(); // جلوگیری از ارسال ناقص
-            return;
-        }
+//         if (!name || !email) {
+//             alert('❌ لطفا همه فیلدها رو پر کن!');
+//             e.preventDefault(); // جلوگیری از ارسال ناقص
+//             return;
+//         }
 
-        alert(`✅ ثبت شد!\nاسم: ${name}\nایمیل: ${email}`);
-    });
+//         alert(`✅ ثبت شد!\nاسم: ${name}\nایمیل: ${email}`);
+//     });
 
-    console.log('✅ فرم آماده ارسال به شیت!');
-}
+//     console.log('✅ فرم آماده ارسال به شیت!');
+// }
 
 // انیمیشن لوگو
 function initLogoAnimation() {
