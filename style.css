@@ -8,6 +8,12 @@
     font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    touch-action: manipulation;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -21,6 +27,8 @@ body {
     min-height: 100vh;
     overflow: hidden;
     position: relative;
+    zoom: 1;
+    transform-origin: 0 0;
 }
 
 .container {
@@ -28,14 +36,15 @@ body {
     z-index: 100;
     min-height: 100vh;
     max-height: 100vh;
-    overflow-y: auto; /* اسکرول داخلی اگر نیاز شد */
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     text-align: center;
+    overflow: hidden;
+    width: 100vw; /* اضافه کن */
+    box-sizing: border-box;
 }
 
 /* استایل لوگو */
