@@ -1,7 +1,5 @@
 // تایمر معکوس - 9 روز دیگه ساعت 21:00
-const launchDate = new Date();
-launchDate.setDate(launchDate.getDate() + 9);
-launchDate.setHours(21, 0, 0, 0);
+const launchDate = new Date(2025, 10, 8, 21, 0, 0, 0);
 
 function updateTimer() {
     const now = new Date().getTime();
@@ -53,26 +51,6 @@ function updateTimer() {
 
 const timerInterval = setInterval(updateTimer, 1000);
 updateTimer();
-
-// function setupFormStorage() {
-//     const form = document.querySelector('.email-form');
-//     if (!form) return console.log('❌ فرم پیدا نشد!');
-
-//     form.addEventListener('submit', function(e) {
-//         const name = form.querySelector('input[name="name"]').value.trim();
-//         const email = form.querySelector('input[name="email"]').value.trim();
-
-//         if (!name || !email) {
-//             alert('❌ لطفا همه فیلدها رو پر کن!');
-//             e.preventDefault(); // جلوگیری از ارسال ناقص
-//             return;
-//         }
-
-//         alert(`✅ ثبت شد!\nاسم: ${name}\nایمیل: ${email}`);
-//     });
-
-//     console.log('✅ فرم آماده ارسال به شیت!');
-// }
 
 // انیمیشن لوگو
 function initLogoAnimation() {
@@ -136,17 +114,6 @@ function createExplosionEffect() {
         explosion.remove();
     }, 1200);
 }
-
-// وقتی صفحه لود شد
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 لندینگ لود شد!');
-    setupFormStorage();
-    initLogoAnimation();
-    
-    // نمایش تعداد ثبت‌های موجود
-    const submissions = JSON.parse(localStorage.getItem('landingSubmissions') || '[]');
-    console.log(`📊 تعداد ثبت‌های موجود: ${submissions.length}`);
-});
 
 // اضافه کردن انیمیشن‌ها به CSS
 const style = document.createElement('style');

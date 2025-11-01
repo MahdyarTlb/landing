@@ -12,6 +12,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-size: .8rem;
     height: 100%;
 }
 
@@ -26,21 +27,19 @@ body {
 .container {
     position: relative;
     z-index: 100;
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow-y: auto; /* اسکرول داخلی اگر نیاز شد */
-    overflow-x: hidden;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 0;
     text-align: center;
 }
 
 /* استایل لوگو */
 .logo-container {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     animation: float 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite;
     position: relative;
     cursor: pointer;
@@ -92,7 +91,7 @@ body {
 
 /* تایمر - با لیبل */
 .timer-container {
-    margin: 20px 0;
+    margin: 2px 0;
     direction: ltr;
     position: relative;
     z-index: 100;
@@ -124,7 +123,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 8px;
+    margin: 0 2px;
 }
 
 .timer-digit {
@@ -135,7 +134,7 @@ body {
 
 .timer-label {
     font-size: 0.7rem;
-    margin-top: 5px;
+    margin-top: 1px;
     opacity: 0.8;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
@@ -143,14 +142,14 @@ body {
 
 /* متن اصلی */
 .message {
-    margin: 25px 0;
+    margin: 5px 0;
     position: relative;
     z-index: 100;
 }
 
 .message h1 {
     font-size: 3rem;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     background: linear-gradient(45deg, #ff0080, #ff8c00, #ff0080);
     -webkit-background-clip: text;
     background-clip: text;
@@ -171,13 +170,13 @@ body {
 .form-container {
     width: 100%;
     max-width: 400px;
-    margin-top: 25px;
+    margin-top: 15px;
     position: relative;
     z-index: 100;
 }
 
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .input-group input {
@@ -217,7 +216,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 0 35px rgba(255, 20, 147, 0.5);
-    margin-top: 10px;
+    margin-top: 15px;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -410,4 +409,30 @@ body {
     .message p { font-size: 1rem; }
     .logo { width: 120px; height: 120px; }
     .form-container { max-width: 300px; }
+}
+
+.form-message {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #e0ffe4;
+        color: #1a751d;
+        border: 2px solid #1a751d;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-size: 15px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+        z-index: 9999;
+}
+      .form-message.error {
+        background: #ffe0e0;
+        border-color: #b71c1c;
+        color: #b71c1c;
+}
+      .form-message.show {
+        opacity: 1;
+        transform: translateY(0);
 }
