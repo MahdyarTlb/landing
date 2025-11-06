@@ -161,7 +161,6 @@ body {
 
 .message p {
     font-size: 1.4rem;
-    opacity: 0.9;
     font-weight: 500;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
@@ -170,7 +169,7 @@ body {
 .form-container {
     width: 100%;
     max-width: 400px;
-    margin-top: 15px;
+    margin-top: 10px;
     position: relative;
     z-index: 100;
 }
@@ -223,6 +222,77 @@ body {
 .submit-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 45px rgba(255, 20, 147, 0.7);
+}
+
+.telegram-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #0088cc, #00acee, #0088cc);
+    background-size: 200% 200%;
+    color: white !important;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.4s ease;
+    box-shadow: 
+        0 5px 25px rgba(0, 136, 204, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: gradient-shift 3s ease infinite;
+}
+
+.telegram-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #0088cc, #00acee);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+    opacity: 1;
+}
+
+.telegram-link::after {
+    content: '✈️';
+    margin-left: 5px;
+    font-size: 1.3em;
+    transition: transform 0.3s ease;
+}
+
+.telegram-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 35px rgba(0, 136, 204, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: white !important;
+    text-decoration: none;
+}
+
+.telegram-link:hover::after {
+    transform: translateX(3px);
+}
+
+.telegram-link:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* انیمیشن گرادینت */
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* انیمیشن بکگراند */
@@ -399,6 +469,11 @@ body {
     .message p { font-size: 1.2rem; }
     .logo { width: 140px; height: 140px; }
     .form-container { max-width: 350px; }
+    telegram-link {
+        padding: 10px 20px;
+        font-size: 1.05rem;
+        margin-top: 15px;
+    }
 }
 
 @media (max-width: 480px) {

@@ -1,5 +1,5 @@
 // تایمر معکوس - 9 روز دیگه ساعت 21:00
-const launchDate = new Date(2025, 10, 8, 21, 0, 0, 0);
+const launchDate = new Date(2025, 10, 10, 23, 0, 0, 0);
 
 function updateTimer() {
     const now = new Date().getTime();
