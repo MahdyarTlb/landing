@@ -125,3 +125,17 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// تابع نمایش لودینگ
+function showLoading(button) {
+    const originalText = button.innerHTML;
+    button.innerHTML = `⏳ در حال ارسال... <div class="loading-spinner"></div>`;
+    button.disabled = true;
+    return originalText;
+}
+
+// تابع پنهان کردن لودینگ
+function hideLoading(button, originalText) {
+    button.innerHTML = originalText;
+    button.disabled = false;
+}

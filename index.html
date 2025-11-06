@@ -45,7 +45,7 @@
       <div class="message">
         <h1>یه خبر بمبببب تو راهه! 💥</h1>
         <p>نمیخای که دستی دستی از دستش بدی!؟</p>
-        <a href="https://t.me/metanix_ir" class="telegram-link">
+                <a href="https://t.me/metanix_ir" class="telegram-link">
         تلگرام
         </a>
       </div>
@@ -185,59 +185,68 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector(".email-form");
-        if (!form) return console.log("❌ فرم پیدا نشد!");
+    const form = document.querySelector(".email-form");
+    if (!form) return console.log("❌ فرم پیدا نشد!");
 
-        form.addEventListener("submit", async function (e) {
-          e.preventDefault();
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-          const name = this.querySelector('input[name="name"]').value.trim();
-          const email = this.querySelector('input[name="email"]').value.trim();
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = showLoading(submitBtn);
 
-          if (!name || !email) {
+        const name = this.querySelector('input[name="name"]').value.trim();
+        const email = this.querySelector('input[name="email"]').value.trim();
+
+        if (!name || !email) {
             showMessage("❌ لطفا همه فیلدها رو پر کن!", "error");
+            hideLoading(submitBtn, originalText);
             return;
-          }
+        }
 
-          try {
+        try {
             const res = await fetch(this.action, {
-              method: "POST",
-              body: new FormData(this),
+                method: "POST",
+                body: new FormData(this),
             });
+
+            // تأخیر مصنوعی برای نمایش بهتر چرخنده (اختیاری)
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             const data = await res.json();
             if (data.ok) {
-              showMessage(
-                "✅ :))) اگه یادمون نرفت، خبرت می‌کنیم 💌",
-                "success"
-              );
-              this.reset();
+                showMessage(
+                    "✅ :))) اگه یادمون نرفت، خبرت می‌کنیم 💌",
+                    "success"
+                );
+                this.reset();
             } else {
-              showMessage(
-                "⚠️ یه مشکلی پیش اومد! لطفا دوباره تلاش کن.",
-                "error"
-              );
+                showMessage(
+                    "⚠️ یه مشکلی پیش اومد! لطفا دوباره تلاش کن.",
+                    "error"
+                );
             }
-          } catch (err) {
+        } catch (err) {
             console.error(err);
             showMessage("🚫 خطای ارتباط با سرور!", "error");
-          }
-        });
-
-        function showMessage(text, type = "success") {
-          const oldMsg = document.querySelector(".form-message");
-          if (oldMsg) oldMsg.remove();
-
-          const msg = document.createElement("div");
-          msg.className = `form-message ${type}`;
-          msg.textContent = text;
-          document.body.appendChild(msg);
-
-          setTimeout(() => msg.classList.add("show"), 100);
-          setTimeout(() => msg.classList.remove("show"), 4000);
-          setTimeout(() => msg.remove(), 4500);
+        } finally {
+            hideLoading(submitBtn, originalText);
         }
-      });
+    });
+
+    function showMessage(text, type = "success") {
+        const oldMsg = document.querySelector(".form-message");
+        if (oldMsg) oldMsg.remove();
+
+        const msg = document.createElement("div");
+        msg.className = `form-message ${type}`;
+        msg.textContent = text;
+        document.body.appendChild(msg);
+
+        setTimeout(() => msg.classList.add("show"), 100);
+        setTimeout(() => msg.classList.remove("show"), 4000);
+        setTimeout(() => msg.remove(), 4500);
+    }
+});
     </script>
   </body>
 </html>
