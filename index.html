@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>لانچ شد! متانیکس اومد!</title>
+    <title>زودتر از بقیه باخبر شو! 💣</title>
     <link rel="icon" type="image/x-icon" href="main-tr.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -16,57 +19,234 @@
         <img src="main-tr.png" alt="Logo" class="logo" id="logo" />
       </div>
 
-      <!-- تایمر + متن لانچ (JS پر می‌کنه) -->
+      <!-- تایمر بزرگ با لیبل -->
       <div class="timer-container">
-        <div class="timer" id="timer"></div>
-        <div class="launched-text">
-          <h2>موعد تموم شد!</h2>
-          <p>لینک اصلی همین الان باز شد!</p>
+        <div class="timer" id="timer">
+          <div class="timer-unit">
+            <span class="timer-digit">۰۹</span>
+            <span class="timer-label">روز</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-digit">۰۰</span>
+            <span class="timer-label">ساعت</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-digit">۰۰</span>
+            <span class="timer-label">دقیقه</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-digit">۰۰</span>
+            <span class="timer-label">ثانیه</span>
+          </div>
         </div>
       </div>
 
-      <!-- دکمه اصلی خفن -->
-      <div class="entry-button">
-        <a href="https://evnd.co/bga7O" target="_blank" class="main-cta">
-          <span>لینک اصلی رو ببین</span>
-          <div class="shine"></div>
-          <div class="pulse"></div>
-          <div class="hover-explosion"></div>
+      <!-- متن اصلی -->
+      <div class="message">
+        <h1>یه خبر بمبببب تو راهه! 💥</h1>
+        <p>نمیخای که دستی دستی از دستش بدی!؟</p>
+                <a href="https://t.me/metanix_ir" class="telegram-link">
+        تلگرام
         </a>
       </div>
 
-      <!-- دکمه‌های اجتماعی -->
-      <div class="social-links">
-        <a href="https://t.me/metanix_ir" target="_blank" class="social-btn telegram">
-          تلگرام
-        </a>
-        <a href="https://instagram.com/metanix_ir" target="_blank" class="social-btn instagram">
-          اینستاگرام
-        </a>
+      <!-- فرم ثبت نام -->
+      <div class="form-container">
+        <!-- جایگزین ساده‌تر -->
+        <form
+          class="email-form"
+          method="post"
+          id="signupForm"
+          action="https://script.google.com/macros/s/AKfycbwjfWUwJ5-ifjE7slsN-NZVrXuhxmMIDUu2qkoegsGNFUgrhvdoifJMLmdxukCRiGQr/exec"
+        >
+          <div class="input-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="اسمت رو بنویس"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="ایمیلت رو وارد کن"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>می‌خوام خبردار بشم! 🚀</span>
+          </button>
+        </form>
+        <iframe name="hidden_iframe" style="display: none"></iframe>
       </div>
     </div>
 
-    <!-- بک‌گراند -->
+    <!-- المان های انیمیشن بکگراند -->
     <div class="bg-animation">
-      <!-- همون قبلی -->
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="energy-wave"></div><div class="energy-wave"></div><div class="energy-wave"></div><div class="energy-wave"></div>
-      <div class="energy-wave"></div><div class="energy-wave"></div>
-      <div class="energy-line"></div><div class="energy-line"></div><div class="energy-line"></div><div class="energy-line"></div>
-      <div class="glow-dot"></div><div class="glow-dot"></div><div class="glow-dot"></div><div class="glow-dot"></div>
-      <div class="glow-dot"></div><div class="glow-dot"></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
-      <div class="floating-logo"><img src="main-tr.png" alt=""></div>
+      <!-- ذرات -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+
+      <!-- امواج انرژی -->
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+      <div class="energy-wave"></div>
+
+      <!-- خطوط انرژی -->
+      <div class="energy-line"></div>
+      <div class="energy-line"></div>
+      <div class="energy-line"></div>
+      <div class="energy-line"></div>
+
+      <!-- نقاط درخشان -->
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+      <div class="glow-dot"></div>
+
+      <!-- لوگوهای شناور -->
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 120%; height: 120%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 150%; height: 150%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 90%; height: 90%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 115%; height: 115%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 180%; height: 180%; opacity: 0.9; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
+      <div class="floating-logo">
+        <img
+          src="main-tr.png"
+          alt=""
+          style="width: 100%; height: 100%; opacity: 0.7; filter: blur(1px)"
+        />
+      </div>
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".email-form");
+    if (!form) return console.log("❌ فرم پیدا نشد!");
+
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = showLoading(submitBtn);
+
+        const name = this.querySelector('input[name="name"]').value.trim();
+        const email = this.querySelector('input[name="email"]').value.trim();
+
+        if (!name || !email) {
+            showMessage("❌ لطفا همه فیلدها رو پر کن!", "error");
+            hideLoading(submitBtn, originalText);
+            return;
+        }
+
+        try {
+            const res = await fetch(this.action, {
+                method: "POST",
+                body: new FormData(this),
+            });
+
+            // تأخیر مصنوعی برای نمایش بهتر چرخنده (اختیاری)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            const data = await res.json();
+            if (data.ok) {
+                showMessage(
+                    "✅ :))) اگه یادمون نرفت، خبرت می‌کنیم 💌",
+                    "success"
+                );
+                this.reset();
+            } else {
+                showMessage(
+                    "⚠️ یه مشکلی پیش اومد! لطفا دوباره تلاش کن.",
+                    "error"
+                );
+            }
+        } catch (err) {
+            console.error(err);
+            showMessage("🚫 خطای ارتباط با سرور!", "error");
+        } finally {
+            hideLoading(submitBtn, originalText);
+        }
+    });
+
+    function showMessage(text, type = "success") {
+        const oldMsg = document.querySelector(".form-message");
+        if (oldMsg) oldMsg.remove();
+
+        const msg = document.createElement("div");
+        msg.className = `form-message ${type}`;
+        msg.textContent = text;
+        document.body.appendChild(msg);
+
+        setTimeout(() => msg.classList.add("show"), 100);
+        setTimeout(() => msg.classList.remove("show"), 4000);
+        setTimeout(() => msg.remove(), 4500);
+    }
+});
+    </script>
   </body>
 </html>
