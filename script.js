@@ -1,13 +1,25 @@
-// تایمر معکوس - 9 روز دیگه ساعت 21:00
-const launchDate = new Date(2025, 10, 10, 23, 0, 0, 0);
+const launchDate = new Date(2025, 10, 10, 23, 0, 0, 0); // 10 نوامبر 2025 ساعت 23:00
 
 function updateTimer() {
     const now = new Date().getTime();
     const distance = launchDate - now;
+    const timerElement = document.getElementById('timer');
+
+    if (!timerElement) return;
+
+    const persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const format = num => num.toString().padStart(2, '0').split('').map(d => persian[d]).join('');
 
     if (distance < 0) {
         clearInterval(timerInterval);
-        document.getElementById('timer').innerHTML = "<div class='timer-unit'><span class='timer-digit'>آغاز شد!</span></div>";
+        timerElement.innerHTML = `
+            <div class="timer-unit"><span class="timer-digit">۰۰</span><span class="timer-label">روز</span></div>
+            <div class="timer-unit"><span class="timer-digit">۰۰</span><span class="timer-label">ساعت</span></div>
+            <div class="timer-unit"><span class="timer-digit">۰۰</span><span class="timer-label">دقیقه</span></div>
+            <div class="timer-unit"><span class="timer-digit">۰۰</span><span class="timer-label">ثانیه</span></div>
+        `;
+        timerElement.classList.add('launched');
+        document.querySelector('.timer-container').classList.add('launched');
         return;
     }
 
@@ -16,126 +28,39 @@ function updateTimer() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const formatNumber = (num) => {
-        const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        return num.toString().replace(/\d/g, (x) => persianNumbers[x]);
-    };
-
-    const formattedDays = formatNumber(days.toString().padStart(2, '0'));
-    const formattedHours = formatNumber(hours.toString().padStart(2, '0'));
-    const formattedMinutes = formatNumber(minutes.toString().padStart(2, '0'));
-    const formattedSeconds = formatNumber(seconds.toString().padStart(2, '0'));
-
-    const timerElement = document.getElementById('timer');
-    if (timerElement) {
-        timerElement.innerHTML = `
-            <div class="timer-unit">
-                <span class="timer-digit">${formattedDays}</span>
-                <span class="timer-label">روز</span>
-            </div>
-            <div class="timer-unit">
-                <span class="timer-digit">${formattedHours}</span>
-                <span class="timer-label">ساعت</span>
-            </div>
-            <div class="timer-unit">
-                <span class="timer-digit">${formattedMinutes}</span>
-                <span class="timer-label">دقیقه</span>
-            </div>
-            <div class="timer-unit">
-                <span class="timer-digit">${formattedSeconds}</span>
-                <span class="timer-label">ثانیه</span>
-            </div>
-        `;
-    }
+    timerElement.innerHTML = `
+        <div class="timer-unit"><span class="timer-digit">${format(days)}</span><span class="timer-label">روز</span></div>
+        <div class="timer-unit"><span class="timer-digit">${format(hours)}</span><span class="timer-label">ساعت</span></div>
+        <div class="timer-unit"><span class="timer-digit">${format(minutes)}</span><span class="timer-label">دقیقه</span></div>
+        <div class="timer-unit"><span class="timer-digit">${format(seconds)}</span><span class="timer-label">ثانیه</span></div>
+    `;
 }
 
 const timerInterval = setInterval(updateTimer, 1000);
 updateTimer();
 
-// انیمیشن لوگو
-function initLogoAnimation() {
-    const logo = document.getElementById('logo');
-    
-    if (logo) {
-        logo.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.15) rotate(8deg)';
-            this.style.filter = 'brightness(1.2) drop-shadow(0 0 25px #ff0080)';
-            this.style.transition = 'all 0.4s ease';
-        });
-
-        logo.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotate(0deg)';
-            this.style.filter = 'brightness(1)';
-            this.style.transition = 'all 0.4s ease';
-        });
-
-        logo.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            this.style.animation = 'none';
-            this.style.transform = 'scale(1.3)';
-            this.style.transition = 'all 0.3s ease';
-            
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-                this.style.animation = 'float 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite';
-            }, 300);
-            
-            createExplosionEffect();
-        });
-
-        logo.style.cursor = 'pointer';
-    }
-}
-
-function createExplosionEffect() {
-    const explosion = document.createElement('div');
-    explosion.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 180px;
-        height: 180px;
-        background: radial-gradient(circle, 
-            rgba(255, 20, 147, 0.8) 0%, 
-            rgba(255, 140, 0, 0.6) 30%, 
-            rgba(64, 224, 208, 0.4) 60%, 
-            transparent 80%);
-        border-radius: 50%;
-        animation: gentle-explode 1.2s ease-out forwards;
-        pointer-events: none;
-        z-index: 1000;
-        mix-blend-mode: screen;
-    `;
-    document.body.appendChild(explosion);
-    
+// انفجار خودکار + انیمیشن لوگو
+document.addEventListener("DOMContentLoaded", () => {
+    // انفجار بزرگ موقع لود
     setTimeout(() => {
-        explosion.remove();
-    }, 1200);
-}
+        const boom = document.createElement('div');
+        boom.style.cssText = `
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 400px; height: 400px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,20,147,1) 0%, rgba(255,140,0,0.8) 40%, transparent 70%);
+            animation: gentle-explode 1.8s ease-out forwards; pointer-events: none; z-index: 9999;
+        `;
+        document.body.appendChild(boom);
+        setTimeout(() => boom.remove(), 1800);
+    }, 600);
 
-// اضافه کردن انیمیشن‌ها به CSS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes gentle-explode {
-        0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
-        50% { transform: translate(-50%, -50%) scale(2); opacity: 0.6; }
-        100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+    // کلیک لوگو
+    const logo = document.getElementById('logo');
+    if (logo) {
+        logo.style.cursor = 'pointer';
+        logo.addEventListener('click', () => {
+            logo.style.transform = 'scale(1.6) rotate(15deg)';
+            setTimeout(() => logo.style.transform = '', 500);
+        });
     }
-`;
-document.head.appendChild(style);
-
-// تابع نمایش لودینگ
-function showLoading(button) {
-    const originalText = button.innerHTML;
-    button.innerHTML = `⏳ در حال ارسال... <div class="loading-spinner"></div>`;
-    button.disabled = true;
-    return originalText;
-}
-
-// تابع پنهان کردن لودینگ
-function hideLoading(button, originalText) {
-    button.innerHTML = originalText;
-    button.disabled = false;
-}
+});
